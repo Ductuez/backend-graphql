@@ -39,7 +39,7 @@ async function startApolloServer(typeDefs, resolvers) {
     csrfPrevention: true,
     cache: "bounded",
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-    context: (req) => {
+    context: ({ req }) => {
       return {
         ...req,
         userId: req ? Auth.getUserId({ req }) : null,

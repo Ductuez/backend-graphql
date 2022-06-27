@@ -1,22 +1,25 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-const userSchema = new Schema(
+const OidVape = new Schema(
   {
-    email: {
+    name: {
       type: String,
       required: true,
       unique: true,
     },
-    username: {
+    // mùi vị
+    flavor: {
       type: String,
-      required: true,
-      unique: true,
+      require: true,
     },
-    password: {
+    brand: {
       type: String,
-      required: true,
+    },
+    ml: {
+      type: String,
     },
   },
   { timestamps: true }
 );
-export const schemaUser = mongoose.model("User", userSchema);
+
+export const schemaOilVape = mongoose.model("OilVape", OidVape);

@@ -1,27 +1,33 @@
-import User from "../models/user";
+import { schemaUser, schemaPod, schemaOilVape } from "../models/index";
 import Auth from "../services/auth.service";
 
 export const resolvers = {
   Query: {
     hello: () => "Hello world!",
-    getUsers: () => User.find(),
+    getUsers: () => schemaUser.find(),
 
     getUser: async (_, { id }, context) => {
       if (!context.userId) throw new Error("You must be authenticated!");
       if (context.userId !== id)
         throw new Error("You can only see you own datas little fella!");
 
-      return User.findById(id);
+      return schemaUser.findById(id);
     },
+
+    getPods: () => schemaPod.find(),
+
+    getPod: async (_, { id }, context) => {
+      return schemaPod.findById(id);
+    },
+
+    getOilVape: () => schemaOilVape.find(),
   },
 
   Mutation: {
     signup: async (_, { email, username, password }) => {
-      console.log("zo");
       try {
-        console.log("mutation");
         const hashedPwd = await Auth.hashPassword(password);
-        const user = new User({ email, username, password: hashedPwd });
+        const user = new schemaUser({ email, username, password: hashedPwd });
         const resultUser = await user.save();
 
         return resultUser;
@@ -33,7 +39,7 @@ export const resolvers = {
     login: async (_, { email, username, password }) => {
       if (!username && !email) throw new Error("email or username required");
       const userPayload = email ? { email } : { username };
-      const user = await User.findOne(userPayload);
+      const user = await schemaUser.findOne(userPayload);
       if (!user) throw new Error("Unknown user", userPayload);
 
       const correctPassword = await Auth.matchPasswords(
@@ -49,6 +55,28 @@ export const resolvers = {
           email: user.email,
         }),
       };
+    },
+
+    createPod: async (
+      _,
+      { name, category, flavor, countOfUse, brand },
+      context
+    ) => {
+      try {
+        if (!context.userId) throw new Error("You must be authenticated!");
+        const pod = new schemaPod({
+          name,
+          category,
+          flavor,
+          countOfUse,
+          brand,
+        });
+        const result = await pod.save();
+        console.log(result);
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
