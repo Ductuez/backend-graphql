@@ -1,6 +1,6 @@
-import { schemaUser } from "../models/index";
-import Auth from "../services/auth.service";
-
+import { schemaUser } from '../models/index';
+import Auth from '../services/auth.service';
+console.log(1);
 // QUERY
 export const getUsers = () =>
   schemaUser
@@ -11,9 +11,9 @@ export const getUsers = () =>
     });
 
 export const getUser = async (_, { id }, context) => {
-  if (!context.userId) throw new Error("You must be authenticated!");
+  if (!context.userId) throw new Error('You must be authenticated!');
   if (context.userId !== id)
-    throw new Error("You can only see you own datas little fella!");
+    throw new Error('You can only see you own datas little fella!');
   const users = schemaUser.findById(id);
   console.log(users);
   return users;
@@ -34,13 +34,13 @@ export const signup = async (_, { email, username, password }) => {
 };
 
 export const login = async (_, { email, username, password }) => {
-  if (!username && !email) throw new Error("email or username required");
+  if (!username && !email) throw new Error('email or username required');
   const userPayload = email ? { email } : { username };
   const user = await schemaUser.findOne(userPayload);
-  if (!user) throw new Error("Unknown user", userPayload);
+  if (!user) throw new Error('Unknown user', userPayload);
 
   const correctPassword = await Auth.matchPasswords(password, user.password);
-  if (!correctPassword) throw new Error("invalid password");
+  if (!correctPassword) throw new Error('invalid password');
 
   return {
     jwt: Auth.generateJwt({
