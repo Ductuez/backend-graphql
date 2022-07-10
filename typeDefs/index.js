@@ -1,44 +1,23 @@
 import { gql } from "apollo-server-express";
+import User from "./user";
+import Pod from "./pod";
+import eNum from "./enum";
+import Category from "./category";
 
 export const typeDefs = gql`
-  type User {
-    id: ID!
-    email: String!
-    username: String!
-    password: String!
-  }
-  type Token {
-    jwt: ID!
-  }
-
-  type OilVape {
-    id: ID!
-    name: String
-    flavor: String
-    brand: String
-    ml: String
-  }
-
-  enum Category {
-    SOBO
-  }
-
-  type Pod {
-    id: ID!
-    name: String
-    category: Category
-    flavor: String
-    countOfUse: String
-    brand: String
-  }
+  ${User}
+  ${Pod}
+  ${eNum}
+  ${Category}
 
   type Query {
+    hello: String
     getUser(id: ID!): User
     getUsers: [User]
-    hello: String
     getPods: [Pod]
     getPod(id: ID!): Pod
     getOilVape: [OilVape]
+    getCategory: [Category]
   }
 
   type Mutation {

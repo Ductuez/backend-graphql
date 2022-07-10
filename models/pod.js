@@ -22,6 +22,9 @@ const PodSchema = new Schema(
     brand: {
       type: String,
     },
+    madeIn: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
