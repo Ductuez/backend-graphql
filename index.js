@@ -19,7 +19,7 @@ const connectDB = () => {
         }
       )
       .then(() => {
-        console.log("oke");
+        console.log("oke db");
       })
       .catch((error) => console.log(error));
   } catch (error) {

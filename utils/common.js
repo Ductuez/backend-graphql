@@ -43,20 +43,3 @@ export const shortNumber = (number, customUnit = ["tỷ", "triệu"]) => {
     ? `${Math.round(Number(number) / 10000000) / 100} ${customUnit[0]}`
     : `${Math.round(Number(number) / 10000) / 100} ${customUnit[1]}`;
 };
-
-export const taoSoDangChuoi = ({ so = 0, donVi = "đ" }) => {
-  return so > 0
-    ? ReactDOMServer.renderToStaticMarkup(
-        <NumberFormat
-          displayType="text"
-          thousandSeparator
-          value={so}
-          renderText={(giaTri) => (
-            <>
-              {giaTri}&nbsp;{donVi}
-            </>
-          )}
-        />
-      )
-    : 0 + donVi;
-};
