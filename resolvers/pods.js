@@ -1,5 +1,5 @@
-import { schemaPod } from "../models/index";
-import Auth from "../services/auth.service";
+import { schemaPod } from '../models/index';
+import Auth from '../services/auth.service';
 
 export const getPods = () =>
   schemaPod
@@ -25,10 +25,10 @@ export const getOilVape = () =>
 export const createPod = async (
   _,
   { name, category, flavor, countOfUse, brand },
-  context
+  context,
 ) => {
   try {
-    if (!context.userId) throw new Error("You must be authenticated!");
+    if (!context.userId) throw new Error('You must be authenticated!');
     const pod = new schemaPod({
       name,
       category,
@@ -37,7 +37,6 @@ export const createPod = async (
       brand,
     });
     const result = await pod.save();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
