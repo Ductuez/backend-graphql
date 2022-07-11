@@ -1,6 +1,5 @@
 import { schemaUser } from '../models/index';
 import Auth from '../services/auth.service';
-console.log(1);
 // QUERY
 export const getUsers = () =>
   schemaUser

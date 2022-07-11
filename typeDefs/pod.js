@@ -16,6 +16,14 @@ const Pod = `
     brand: String
     ml: String
   }
+  
+  input  InputCreatePod {
+      name: String!
+      category: String!
+      flavor: String!
+      countOfUse: String
+      brand: String
+  }
 `;
 
 export default Pod;
