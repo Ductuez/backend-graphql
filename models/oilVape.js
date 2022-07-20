@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const OidVape = new Schema(
   {
@@ -18,8 +18,14 @@ const OidVape = new Schema(
     ml: {
       type: String,
     },
+    oldPrice: {
+      type: Number,
+    },
+    price: {
+      type: Number,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export const schemaOilVape = mongoose.model("OilVape", OidVape);
+export const schemaOilVape = mongoose.model('OilVape', OidVape);

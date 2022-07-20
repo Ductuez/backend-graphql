@@ -8,22 +8,28 @@ import {
   signup,
   login,
   createPod,
-} from "./common";
+  getPromotion,
+  getPromotions,
+  createPromotion,
+} from './common';
 
 export const resolvers = {
   Query: {
-    hello: () => "Hello world!",
+    hello: () => 'Hello world!',
     getUsers,
     getUser,
     getPods,
     getPod,
     getOilVape,
     getCategory,
+    getPromotion,
+    getPromotions,
   },
 
   Mutation: {
     signup,
     login,
     createPod,
+    createPromotion,
   },
 };

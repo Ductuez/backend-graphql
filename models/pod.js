@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const PodSchema = new Schema(
   {
@@ -25,8 +25,14 @@ const PodSchema = new Schema(
     madeIn: {
       type: String,
     },
+    oldPrice: {
+      type: Number,
+    },
+    price: {
+      type: Number,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export const schemaPod = mongoose.model("Pods", PodSchema);
+export const schemaPod = mongoose.model('Pods', PodSchema);

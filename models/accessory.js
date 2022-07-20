@@ -14,6 +14,12 @@ const accessorySchema = new Schema(
       type: String,
       unique: true,
     },
+    oldPrice: {
+      type: Number,
+    },
+    price: {
+      type: Number,
+    },
   },
   { timestamps: true },
 );

@@ -4,6 +4,8 @@ const Accessory = `
     batery: String
     coil: String
     cotton: String
+    oldPrice: Int
+    price: Int
   }
 `;
 
